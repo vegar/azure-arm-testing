@@ -161,7 +161,8 @@ Function Test-AzureJson {
               }
 
               "securestring" {
-                $TemplateParameters.Add($Parameter, "dummystring")
+                $secureValue = (ConvertTo-SecureString "dummystring" -asplaintext -force)
+                $TemplateParameters.Add($Parameter, $secureValue)
               }
 
               "array" {
