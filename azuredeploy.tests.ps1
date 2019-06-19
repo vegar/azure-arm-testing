@@ -86,9 +86,10 @@ Function Test-AzureJson {
     }
   }
 
-  Context "Missing opening or closing square brackets" {
+  Context "Missing opening or closing square 
+  ets" {
     For($i=0;$i -lt $jsonMainTemplate.Length;$i++) {
-      $Matches = [System.Text.RegularExpressions.Regex]::Matches($jsonMainTemplate[$i],"\"".*\""")
+      $Matches = [System.Text.RegularExpressions.Regex]::Matches($jsonMainTemplate[$i],'"(?:[^"\\]|\\.)*"')
 
       ForEach($Match In $Matches) {
         $PairCharNumber = ($Match.Value.Length - $Match.Value.Replace("[","").Replace("]","").Length) % 2
